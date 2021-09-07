@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  web:
+    build: .
+    ports:
+      - '3000:3000'
+    #ファイルシステムのマウント、必ず相対PATHで指定する
+    volumes:
+      - '.:/product-register'
+    #-itの部分
+    tty: true
+    stdin_open: true
