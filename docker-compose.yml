@@ -1,5 +1,8 @@
 version: '3'
 
+volumes:
+  data-base:
+
 services:
   web:
     build: .
@@ -8,6 +11,17 @@ services:
     #ファイルシステムのマウント、必ず相対PATHで指定する
     volumes:
       - '.:/product-register'
+    environment:
+      - 'DATABASE_PASSWORD=postgres'
     #-itの部分
     tty: true
     stdin_open: true
+    depends_on:
+      - db
+    links:
+      - db
+
+  db:
+    image: postgres
+    volumes:
+      - 'db_data:/var/lib/postgresql/data'
