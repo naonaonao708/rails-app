@@ -1,7 +1,7 @@
 version: '3'
 
 volumes:
-  data-base:
+  db-data:
 
 services:
   web:
@@ -24,4 +24,7 @@ services:
   db:
     image: postgres
     volumes:
-      - 'db_data:/var/lib/postgresql/data'
+      - 'db-data:/var/lib/postgresql/data'
+    environment:
+      - 'POSTGRES_USER=postgres'
+      - 'POSTGRES_PASSWORD=postgres'
